@@ -11,4 +11,12 @@ class Gradebook
         @courses << course
         @courses
     end
+
+    def list_all_students
+        student_list = {}
+        @courses.each do |course|
+            student_list[course.name] = course.students
+        end
+        student_list
+    end
 end

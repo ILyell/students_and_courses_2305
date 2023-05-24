@@ -61,7 +61,7 @@ RSpec.describe Gradebook do
 
             expect(gradebook.courses[1].students).to eq([student3, student4])
 
-            expect(gradebook.list_all_students).to eq({:course_1 => [student1, student2], :course_2 => [student3, student4]})
+            expect(gradebook.list_all_students).to eq({"Calculus" => [student1, student2], "English"=> [student3, student4]})
         end
     end
 end
