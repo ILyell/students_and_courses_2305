@@ -157,8 +157,8 @@ RSpec.describe Gradebook do
             gradebook.add_course(course_1)
             gradebook.add_course(course_2)
 
-            expect(gradebook.students_in_range(60, 80).to eq([student3, student4])
-            expect(gradebook.students_in_range(40, 80).to eq([student2, student3, student4])
+            expect(gradebook.students_in_range(60, 80)).to eq([student3, student4])
+            expect(gradebook.students_in_range(40, 80)).to eq([student2, student3, student4])
 
         end
     end

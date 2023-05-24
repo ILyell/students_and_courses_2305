@@ -35,4 +35,12 @@ class Gradebook
         end
         grades_list
     end
+
+    def students_in_range(min, max)
+        list_all_students.values.flatten.find_all do |student|
+            if (student.grade > min) && (student.grade < max)
+                student
+            end
+        end
+    end
 end
