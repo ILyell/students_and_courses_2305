@@ -46,16 +46,37 @@ RSpec.describe Course do
 
             course_1.enroll(student1)
 
+            expect(course_1.students).to eq([student1])
             expect(course_1.full?).to eq(false)
 
             course_1.enroll(student2)
-
+            
+            expect(course_1.students).to eq([student1, student2])
             expect(course_1.full?).to eq(true)
             
             course_2.enroll(student1)
             course_2.enroll(student2)
             
+            expect(course_2.students).to eq([student1, student2])
             expect(course_2.full?).to eq(false)
+        end
+
+        it 'checks if full before adding more students' do
+            course_1 = Course.new("Calculus", 2)
+            course_2 = Course.new("English", 4)
+            student1 = Student.new({name: "Morgan", age: 21})
+            student2 = Student.new({name: "Jordan", age: 29})    
+            student3 = Student.new({name: "Jordan", age: 29})    
+            student4 = Student.new({name: "Jordan", age: 29})    
+
+            course_1.enroll(student1)
+            course_1.enroll(student2)
+            expect(course_1.students).to eq([student1, student2])
+
+            course_1.enroll(student3)
+            course_1.enroll(student4)
+            
+            expect(course_1.students).to eq([student1, student2])
         end
     end
 end
