@@ -93,4 +93,36 @@ RSpec.describe Gradebook do
             expect(gradebook.students_below(40)).to eq([])
         end
     end
+    
+    describe '#all_grades' do
+        it 'list all grades from all courses as a hash with course being the key and an array of grades' do
+
+            gradebook = Gradebook.new("Mr.Dr.Prof. Patrick")
+            course_1 = Course.new("Calculus", 2)
+            course_2 = Course.new("English", 4)
+            student1 = Student.new({name: "Morgan", age: 21})
+            student2 = Student.new({name: "Jordan", age: 29})    
+            student3 = Student.new({name: "Tim", age: 19})    
+            student4 = Student.new({name: "Larry", age: 22})  
+            student1.log_score(89)
+            student1.log_score(78)
+            student1.log_score(90)
+            student2.log_score(60)
+            student2.log_score(65)
+            student2.log_score(50)
+            student2.log_score(45)
+            student3.log_score(90)
+            student3.log_score(55)
+            student4.log_score(70)
+            student4.log_score(65)
+            course_1.enroll(student1)
+            course_1.enroll(student2)
+            course_2.enroll(student3)
+            course_2.enroll(student4)
+            gradebook.add_course(course_1)
+            gradebook.add_course(course_2)
+            
+            expect(gradebook.all_grades).to eq({"Calculus" => [student1.grade, student2.grade], "English"=> [student3.grade, student4.grade]})
+        end
+    end
 end
