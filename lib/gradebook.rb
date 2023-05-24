@@ -19,4 +19,10 @@ class Gradebook
         end
         student_list
     end
+    
+    def students_below(score)
+        list_all_students.values.flatten.find_all do |student|
+            student.grade < score
+        end
+    end
 end
