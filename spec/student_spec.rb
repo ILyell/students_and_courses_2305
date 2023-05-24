@@ -23,4 +23,18 @@ RSpec.describe Student do
             
         end
     end
+
+    describe "#log_score" do 
+        it 'takes an integer argument and pushes it to @scores array' do
+            student = Student.new({name: "Morgan", age: 21})
+
+            expect(student.scores).to eq([])
+
+            student.log_score(89)
+            expect(student.scores).to eq([89])
+            
+            student.log_score(78)
+            expect(student.scores).to eq([89, 78])
+        end
+    end
 end
