@@ -7,4 +7,8 @@ class Student
         @age = student_hash[:age]
         @scores = []
     end
+
+    def log_score(score)
+        @scores << score 
+    end
 end
