@@ -37,4 +37,31 @@ RSpec.describe Gradebook do
             expect(gradebook.courses).to eq([course_1, course_2])
         end
     end
+
+    describe '#list_all_students' do
+        it 'returns hash where course is the key and @students are the value in an array' do
+            gradebook = Gradebook.new("Mr.Dr.Prof. Patrick")
+            course_1 = Course.new("Calculus", 2)
+            course_2 = Course.new("English", 4)
+            student1 = Student.new({name: "Morgan", age: 21})
+            student2 = Student.new({name: "Jordan", age: 29})    
+            student3 = Student.new({name: "Tim", age: 19})    
+            student4 = Student.new({name: "Larry", age: 22})  
+
+            course_1.enroll(student1)
+            course_1.enroll(student2)
+
+            gradebook.add_course(course_1)
+            
+            expect(gradebook.courses[0].students).to eq([student1, student2])
+
+            course_2.enroll(student3)
+            course_2.enroll(student4)
+            gradebook.add_course(course_2)
+
+            expect(gradebook.courses[1].students).to eq([student3, student4])
+
+            expect(gradebook.list_all_students).to eq({:course_1 => [student1, student2], :course_2 => [student3, student4]})
+        end
+    end
 end
