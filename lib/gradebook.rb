@@ -25,4 +25,14 @@ class Gradebook
             student.grade < score
         end
     end
+    
+    def all_grades
+        grades_list = {}
+        @courses.each do |course|
+            grade_array = []
+            course.students.each {|student| grade_array << student.grade}
+            grades_list[course.name] = grade_array
+        end
+        grades_list
+    end
 end
